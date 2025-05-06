@@ -20,23 +20,22 @@
 </head>
 
 <body data-theme="dark">
-    <section class="header-section">
+    <section class="header-sct">
         <header>
             <h1>
-                Calculadora.JS
+                Calculadora. JS
             </h1>
         </header>
-    
+        
         <div>
             <button id="switchTheme" class="switch-theme">Trocar interface</button>
-        </div>
-
-        <div>
-            <input type="text" id="operation">
         </div>
     </section>
 
     <section class="keys-section">
+        <div class="input-operation">
+            <input type="text" id="operation">
+        </div>
         <button id="clear" data-key="clear" >C</button>
         <button class="character" id="parentheses1" data-key="(" >(</button>
         <button class="character" id="parentheses2" data-key=")">)</button>
@@ -59,7 +58,7 @@
         <button class="character" id="equal" data-key="=" >=</button>
     </section>
 
-    <section id="result">
+    <section id="result-st">
         <p>Resultado:</p>
         <button id="copy" class="copy-btn">
             Copy
