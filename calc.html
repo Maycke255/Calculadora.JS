@@ -20,15 +20,52 @@
 </head>
 
 <body data-theme="dark">
-    <header>
-        <h1>
-            Calculadora.JS
-        </h1>
-    </header>
+    <section class="header-section">
+        <header>
+            <h1>
+                Calculadora.JS
+            </h1>
+        </header>
+    
+        <div>
+            <button id="switchTheme" class="switch-theme">Trocar interface</button>
+        </div>
 
-    <div>
-        <button id="switchTheme" class="switch-theme">Trocar interface</button>
-    </div>
+        <div>
+            <input type="text" id="operation">
+        </div>
+    </section>
+
+    <section class="keys-section">
+        <button id="clear" data-key="clear" >C</button>
+        <button class="character" id="parentheses1" data-key="(" >(</button>
+        <button class="character" id="parentheses2" data-key=")">)</button>
+        <button class="character" id="division" data-key="÷" >÷</button>
+        <button class="character" id="seven" data-key="7" >7</button>
+        <button class="character" id="eight" data-key="8" >8</button>
+        <button class="character" id="nine" data-key="9" >9</button>
+        <button class="character" id="multiplication" data-key="×" >×</button>
+        <button class="character" id="four" data-key="4" >4</button>
+        <button class="character" id="five" data-key="5" >5</button>
+        <button class="character" id="six" data-key="6" >6</button>
+        <button class="character" id="subtraction" data-key="-" >-</button>
+        <button class="character" id="one" data-key="1" >1</button>
+        <button class="character" id="two" data-key="2" >2</button>
+        <button class="character" id="three" data-key="3" >3</button>
+        <button class="character" id="sum" data-key="+" >+</button>
+        <button class="character" id="zero" data-key="0" >0</button>
+        <button class="character" id="point" data-key="." >.</button>
+        <button class="character" id="percentage" data-key="%" >%</button>
+        <button class="character" id="equal" data-key="=" >=</button>
+    </section>
+
+    <section id="result">
+        <p>Resultado:</p>
+        <button id="copy" class="copy-btn">
+            Copy
+        </button>
+        <input type="text" id="result" disabled>
+    </section>
 
     <div>
         <script src="JS/calc.js"></script>
