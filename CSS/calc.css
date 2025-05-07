@@ -17,7 +17,6 @@ body {
     font-family: var(--font-primary);
     color: var(--font-color-primary);
     background-color: var(--bg-color-black);
-    height: 100vh;
     justify-items: center;
 }
 
@@ -27,11 +26,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 3rem;
 }
 
 h1 {
     padding: 2rem;
-    font-size: 4.5rem;
+    font-size: 3.5rem;
     text-shadow: var(--shadow-1-white);
     text-align: center;
     width: 100%;
@@ -51,7 +51,41 @@ h1 {
     padding: 1rem 2rem;
 }
 
+
+.keys-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 1rem;
+}
+
+.input-operation {
+    grid-column: span 4;
+}
+
 #operation {
-    width: 30rem;
+    font-family: var(--font-secondary);
+    font-size: 1.5rem;
+    min-width: 30rem;
     height: 4.5rem;
+    border-radius: .75rem;
+    border-style: solid;
+}
+
+#clear {
+    font-family: var(--font-secondary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-radius: .75rem;
+    border-style: solid;
+    height: 4rem;
+}
+
+.character {
+    font-family: var(--font-secondary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-radius: .75rem;
+    border-style: solid;
+    height: 4rem;
 }
