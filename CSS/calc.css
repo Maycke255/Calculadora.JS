@@ -8,69 +8,79 @@
     --font-primary: "lato", sans-serif;
     --font-secondary: "Quantico", sans-serif;
     --bg-color-black: #19191a;
-    --bg-color-calculator: radial-gradient(circle at center, rgb(65, 56, 73) 0%, rgb(32, 29, 37) 100%); 
+    --bg-color-calculator: radial-gradient(circle at center, rgb(65, 56, 73) 0%, rgb(32, 29, 37) 100%);
+    --bg-color-display: rgba(200, 215, 230, 0.2);
+    --bg-color-error: #ff2e38;
     --border-key-theme-clear: #a54a00;
     --border-keys-theme: #6f57dbb2;
     --font-color-primary: #ece5f0;
-    --bg-theme-keys-operation: linear-gradient(135deg, rgb(18, 0, 46) 0%, rgb(101, 129, 155) 100%);
-    --shadow-1-white: 0 3px 6px 2px rgba(255, 255, 255, 0.349);
-    --shadow-1-purple: 0 3px 9px rgba(186, 36, 255, 0.589);
-    --shadow-1-black:  0 3px 6px 2px rgba(0, 0, 0, 0.877);
+    --color-theme-keys-operation: linear-gradient(135deg, rgb(18, 0, 46) 0%, rgb(101, 129, 155) 100%);
     --color-theme-switch-btn: #665feeb2;
     --color-theme-keys: #9ea7b3;
     --color-theme-keys-special: linear-gradient(135deg, rgb(46, 26, 0) 0%, rgba(203, 92, 0, 1) 100%);
+    --shadow-1-white: 0 3px 6px 2px rgba(255, 255, 255, 0.349);
+    --shadow-1-purple: 0 3px 9px rgba(186, 36, 255, 0.589);
+    --shadow-1-black:  0 3px 6px 2px rgba(0, 0, 0, 0.877);
+    --shadow-for-operation: 0 4px 30px rgba(0, 0, 0, 0.897), inset 0 0 12px rgba(255, 255, 255, 0.025);
+    --shadow-for-operation-focus: 0 0 0 2px rgba(74, 242, 253, 0.4), 0 0 15px rgba(74, 242, 253, 0.6);
 }
 
 body {
-    font-family: var(--font-primary);
-    color: var(--font-color-primary);
     background-color: var(--bg-color-black);
+    color: var(--font-color-primary);
+    font-family: var(--font-primary);
     justify-items: center;
 }
 
 .header-sct {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 3rem;
     height: 30vh;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 3rem;
 }
 
 h1 {
-    padding: 2rem;
     font-size: 3.5rem;
-    text-shadow: var(--shadow-1-purple);
+    padding: 2rem;
     text-align: center;
+    text-shadow: var(--shadow-1-purple);
     width: 100%;
 }
 
 .switch-theme {
-    font-weight: 500;
-    border-radius: .75rem;
-    border-color: var(--font-color-primary);
-    color: var(--font-color-primary);
-    box-shadow: var(--shadow-1-purple);
     background-color: var(--color-theme-switch-btn);
-    border-style: solid;
-    text-align: center;
+    border: 2.5px solid var(--font-color-primary);
+    border-radius: .75rem;
+    box-shadow: var(--shadow-1-purple);
+    color: var(--font-color-primary);
     font-size: 1rem;
+    font-weight: 500;
     letter-spacing: 1.5px;
     padding: 1rem 2rem;
+    text-align: center;
+}
+
+.switch-theme:hover {
+    background: #c5b5fd;
+    border: 2.5px solid var(--color-theme-switch-btn);
+    color: var(--bg-color-black);
+    cursor: pointer;
 }
 
 
 .keys-section {
+    background: var(--bg-color-calculator);
+    border-color: black;
+    border-radius: 1rem;
+    border-style: solid;
+    box-shadow: var(--shadow-1-black);
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
-    padding: 1rem;
-    background: var(--bg-color-calculator);
-    border-radius: 1rem;
-    border-style: solid;
-    border-color: black;
     gap: 1rem;
-    
+    padding: 1rem;
 }
 
 .input-operation {
@@ -78,101 +88,147 @@ h1 {
 }
 
 #operation {
+    align-self: center;
+    background: var(--bg-color-display);
+    backdrop-filter: blur(10px); 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border-radius: .75rem;
+    box-shadow: var(--shadow-for-operation);
+    color: var(--font-color-primary); 
     font-family: var(--font-secondary);
     font-size: 2.25rem;
-    min-width: 30rem;
     height: 4.5rem;
-    border-radius: .75rem;
-    align-self: center;
+    min-width: 30rem;
     text-align: right;
-    background: rgba(200, 215, 230, 0.2); /* Base azulada translúcida */
-    backdrop-filter: blur(10px); /* Efeito vidro fosco */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
-    box-shadow: 
-        0 4px 30px rgba(0, 0, 0, 0.897),
-        inset 0 0 12px rgba(255, 255, 255, 0.025); /* Sombras internas/externas */
-    color: #e0e7ff; /* Texto azul claro */
     text-shadow: 0 0 8px rgba(200, 220, 255, 0.3);
 }
 
 #operation:focus {
-    outline: none;
     border-color: #4af2fd;
-    box-shadow: 0 0 0 2px rgba(74, 242, 253, 0.4),
-                0 0 15px rgba(74, 242, 253, 0.6);
+    box-shadow: var(--shadow-for-operation-focus);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#operation:hover {
+    border-color: #4af2fd;
+    box-shadow: var(--shadow-for-operation-focus);
+    cursor: text;
+    outline: none;
     transition: all 0.3s ease;
 }
 
 #clear {
+    background: var(--color-theme-keys-special);
+    border: 2px solid var(--border-key-theme-clear);
+    border-radius: .75rem;
+    box-shadow: var(--shadow-1-black);
+    color: var(--font-color-primary);
     font-family: var(--font-secondary);
     font-size: 1.5rem;
     font-weight: 600;
-    border-radius: .75rem;
-    border-style: solid;
-    border-color: var(--border-key-theme-clear);
     height: 4rem;
-    color: var(--font-color-primary);
-    box-shadow: var(--shadow-1-black);
-    background: var(--color-theme-keys-special);
+}
+
+#clear:hover {
+    background: linear-gradient(135deg, rgb(66, 36, 0) 0%, rgb(223, 102, 0) 100%);
+    border-color: #c55a00;
+    transform: translateY(-2px);
 }
 
 .character {
-    font-family: var(--font-secondary);
     background: var(--color-theme-keys);
     border: 2px solid var(--border-keys-theme);
+    border-radius: .75rem;
     box-shadow: var(--shadow-1-black);
+    font-family: var(--font-secondary);
     font-size: 1.5rem;
     font-weight: 600;
-    border-radius: .75rem;
-    border-style: solid;
     height: 4rem;
     text-shadow: 0 0 8px rgba(47, 11, 94, 0.479);
 }
 
+.character:hover {
+    background: #b8c5d3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
 #parentheses1, #parentheses2, #division, #multiplication, #subtraction, #sum, #percentage, #equal {
-    background: var(--bg-theme-keys-operation);
+    background: var(--color-theme-keys-operation);
     color: #cabbff;
     text-shadow: 0 0 8px rgba(132, 177, 255, 0.664);
 }
 
+#parentheses1:hover, 
+#parentheses2:hover, 
+#division:hover,
+#multiplication:hover, 
+#subtraction:hover, 
+#sum:hover,
+#percentage:hover,
+#equal:hover {
+    background: linear-gradient(135deg, rgb(28, 10, 56) 0%, rgb(121, 149, 175) 100%);
+    color: #e0d5ff;
+    transform: translateY(-2px);
+}
+
 .result-st {
-    margin: 2rem;
-    width: 100%;
     justify-items: center;
     justify-self: center;
+    margin: 2rem;
+    width: 100%;
 }
 
 .result-st p {
-    padding: 1rem;
     font-size: 1.75rem;
     letter-spacing: 1px;
+    padding: 1rem;
     text-shadow: var(--shadow-1-purple);
 }
 
 .copy-btn {
-    font-weight: 500;
+    background: var(--color-theme-switch-btn);
+    border:2.5px solid var(--font-color-primary);
     border-radius: .75rem 0 0 .75rem;
-    border-color: var(--font-color-primary);
-    color: var(--font-color-primary);
     box-shadow: var(--shadow-1-purple);
-    background-color: var(--color-theme-switch-btn);
-    border-style: solid;
-    text-align: center;
+    color: var(--font-color-primary);
     font-size: 1rem;
+    font-weight: 500;
     letter-spacing: 1.5px;
     padding: 0.90rem 2rem;
+    text-align: center;
+}
+
+.copy-btn:hover {
+    background: #c5b5fd;
+    border: 2.5px solid var(--color-theme-switch-btn);
+    color: var(--bg-color-black);
+    cursor: pointer;
 }
 
 #result {
-    font-weight: 500;
-    text-align: right;
-    border-radius: 0 .75rem .75rem 0;
-    padding: 1rem 2rem;
-    width: 30rem;
-    background: rgba(200, 215, 230, 0.2); /* Base azulada translúcida */
-    backdrop-filter: blur(10px); /* Efeito vidro fosco */
+    background: var(--bg-color-display);
+    backdrop-filter: blur(10px); 
     border: 2px solid var(--font-color-primary);
+    border-radius: 0 .75rem .75rem 0;
     box-shadow: var(--shadow-1-purple);
-    color: #e0e7ff; /* Texto azul claro */
+    color: var(--font-color-primary);
+    font-weight: 500;
+    padding: 1rem 2rem;
+    text-align: right;
     text-shadow: 0 0 8px rgba(200, 220, 255, 0.3);
+    width: 30rem;
+}
+
+.character, #clear, .switch-theme, .copy-btn {
+    transition: all 0.2s ease;
+}
+
+/* Classe de mensagem de error para usar no JS quando o usuario digitar algum codigo malicioso que não for uma operação matematica no input */
+.error {
+    background: var(--bg-color-error);
+    color: var(--font-color-primary);
+    font-family: var(--font-secondary);
+    font-style: italic;
 }
