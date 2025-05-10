@@ -7,7 +7,7 @@
 :root {
     --font-primary: "lato", sans-serif;
     --font-secondary: "Quantico", sans-serif;
-    --bg-color-black: #19191a;
+    --bg-color: #19191a;
     --bg-color-calculator: radial-gradient(circle at center, rgb(65, 56, 73) 0%, rgb(32, 29, 37) 100%);
     --bg-color-display: rgba(200, 215, 230, 0.2);
     --bg-color-error: #ff2e38;
@@ -26,7 +26,7 @@
 }
 
 body {
-    background-color: var(--bg-color-black);
+    background-color: var(--bg-color);
     color: var(--font-color-primary);
     font-family: var(--font-primary);
     justify-items: center;
@@ -65,7 +65,7 @@ h1 {
 .switch-theme:hover {
     background: #c5b5fd;
     border: 2.5px solid var(--color-theme-switch-btn);
-    color: var(--bg-color-black);
+    color: var(--bg-color);
     cursor: pointer;
 }
 
@@ -157,6 +157,7 @@ h1 {
 #parentheses1, #parentheses2, #division, #multiplication, #subtraction, #sum, #percentage, #equal {
     background: var(--color-theme-keys-operation);
     color: #cabbff;
+        color: #0b061b;
     text-shadow: 0 0 8px rgba(132, 177, 255, 0.664);
 }
 
@@ -203,7 +204,7 @@ h1 {
 .copy-btn:hover {
     background: #c5b5fd;
     border: 2.5px solid var(--color-theme-switch-btn);
-    color: var(--bg-color-black);
+    color: var(--bg-color);
     cursor: pointer;
 }
 
@@ -231,4 +232,27 @@ h1 {
     color: var(--font-color-primary);
     font-family: var(--font-secondary);
     font-style: italic;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg-color: #e8e2f1;
+        --font-color-primary: #180622;
+        --bg-color-display: rgba(52, 60, 68, 0.644);
+    }
+
+    #operation {
+        color: var(--bg-color);
+    }
+}
+
+@media (min-width: 768px) {
+    .header-sct {
+    display: flex;
+    align-content: space-between;
+    align-items: center;
+    margin: 3rem;
+    height: 30vh;
+    width: 100%;
+}
 }
