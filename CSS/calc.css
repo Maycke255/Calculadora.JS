@@ -34,9 +34,10 @@ body {
 
 .header-sct {
     display: flex;
-    align-items: center;
     flex-direction: column;
-    margin: 3rem;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
     height: 30vh;
     width: 100%;
 }
@@ -178,7 +179,6 @@ h1 {
     justify-items: center;
     justify-self: center;
     margin: 2rem;
-    width: 100%;
 }
 
 .result-st p {
@@ -186,6 +186,7 @@ h1 {
     letter-spacing: 1px;
     padding: 1rem;
     text-shadow: var(--shadow-1-purple);
+    justify-content: center;
 }
 
 .copy-btn {
@@ -199,6 +200,7 @@ h1 {
     letter-spacing: 1.5px;
     padding: 0.90rem 2rem;
     text-align: center;
+    margin-right: 0;
 }
 
 .copy-btn:hover {
@@ -212,6 +214,7 @@ h1 {
     background: var(--bg-color-display);
     backdrop-filter: blur(10px); 
     border: 2px solid var(--font-color-primary);
+    border-left: 0;
     border-radius: 0 .75rem .75rem 0;
     box-shadow: var(--shadow-1-purple);
     color: var(--font-color-primary);
@@ -219,7 +222,13 @@ h1 {
     padding: 1rem 2rem;
     text-align: right;
     text-shadow: 0 0 8px rgba(200, 220, 255, 0.3);
-    width: 30rem;
+    min-width: 30rem;
+    max-width: 15rem;
+    margin-left: 0;
+}
+
+.text {
+    display: flex;
 }
 
 .character, #clear, .switch-theme, .copy-btn {
@@ -236,7 +245,7 @@ h1 {
 
 @media (prefers-color-scheme: light) {
     :root {
-        --bg-color: #e8e2f1;
+        --bg-color: #e5e0ec;
         --font-color-primary: #180622;
         --bg-color-display: rgba(52, 60, 68, 0.644);
     }
@@ -248,11 +257,12 @@ h1 {
 
 @media (min-width: 768px) {
     .header-sct {
-    display: flex;
-    align-content: space-between;
-    align-items: center;
-    margin: 3rem;
-    height: 30vh;
-    width: 100%;
-}
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0 3rem;
+        margin: 0 auto;
+        height: 30vh;
+    }
 }
