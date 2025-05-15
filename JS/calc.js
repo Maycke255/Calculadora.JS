@@ -5,11 +5,25 @@ const clear = document.getElementById(`clear`)
 const operation = document.getElementById(`operation`)
 const result = document.getElementById(`result`)
 const copyToClipboard = document.getElementById(`copy`)
-
 const body = document.querySelector(`body`)
 
+function checkPreferesTheme (ev) {
+    ev.preventDefault()
+
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const body = document.body
+
+    if (prefersDark) {
+        body.dataset.theme = `dark`
+    } else {
+        body.dataset.theme = `light`
+    }
+}
+
+document.addEventListener(`DOMContentLoaded`, checkPreferesTheme);
+
 switchTheme.addEventListener(`click`, function () {
-    if (body.dataset.theme = `dark`) {
+    if (body.dataset.theme === `dark`) {
         body.classList.remove(`dark-theme`)
         body.classList.add(`light-theme`)
         body.dataset.theme = `light`
@@ -19,18 +33,23 @@ switchTheme.addEventListener(`click`, function () {
         body.dataset.theme = `dark`
     }
 
+    // if (body.dataset.theme === `light`) {
+    //     body.classList.remove(`light-theme`)
+    //     body.classList.add(`dark-theme`)
+    //     body.dataset.theme = `dark`
+    // }
 
-    switch (switchTheme) {
-        case body.dataset.theme = `dark`:
-            body.classList.remove(`dark-theme`)
-            body.classList.add(`light-theme`)
-            body.dataset.theme = `light`
-            break;
+    // switch (switchTheme) {
+    //     case body.dataset.theme = `dark`:
+    //         body.classList.remove(`dark-theme`)
+    //         body.classList.add(`light-theme`)
+    //         body.dataset.theme = `light`
+    //         break;
     
-        case body.dataset.theme = `light`:
-            body.classList.remove(`light-theme`)
-            body.classList.add(`dark-theme`)
-            body.dataset.theme = `dark`
-            break;
-    }
+    //     case body.dataset.theme = `light`:
+    //         body.classList.remove(`light-theme`)
+    //         body.classList.add(`dark-theme`)
+    //         body.dataset.theme = `dark`
+    //         break;
+    // }
 })

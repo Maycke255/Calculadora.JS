@@ -14,6 +14,7 @@
     --border-key-theme-clear: #a54a00;
     --border-keys-theme: #6f57dbb2;
     --font-color-primary: #ece5f0;
+    --font-color-display: #e5e0ec;
     --color-theme-keys-operation: linear-gradient(135deg, rgb(18, 0, 46) 0%, rgb(101, 129, 155) 100%);
     --color-theme-switch-btn: #665feeb2;
     --color-theme-keys: #9ea7b3;
@@ -54,7 +55,7 @@ h1 {
     border: 2.5px solid var(--font-color-primary);
     border-radius: .75rem;
     box-shadow: var(--shadow-1-purple);
-    color: var(--font-color-primary);
+    color: var(--font-color-display);
     font-size: 1rem;
     font-weight: 500;
     letter-spacing: 1.5px;
@@ -95,7 +96,7 @@ h1 {
     border: 1px solid rgba(255, 255, 255, 0.1); 
     border-radius: .75rem;
     box-shadow: var(--shadow-for-operation);
-    color: var(--font-color-primary); 
+    color: var(--font-color-display); 
     font-family: var(--font-secondary);
     height: auto;
     min-height: 4.5rem;
@@ -128,7 +129,7 @@ h1 {
     border: 2px solid var(--border-key-theme-clear);
     border-radius: .75rem;
     box-shadow: var(--shadow-1-black);
-    color: var(--font-color-primary);
+    color: var(--font-color-display);
     font-family: var(--font-secondary);
     font-size: 1.5rem;
     font-weight: 600;
@@ -208,7 +209,7 @@ h1 {
     border:2.5px solid var(--font-color-primary);
     border-radius: 0.75rem 0 0 0.75rem;
     box-shadow: var(--shadow-1-purple);
-    color: var(--font-color-primary);
+    color: var(--font-color-display);
     font-size: 1rem;
     font-weight: 500;
     letter-spacing: 1.5px;
@@ -239,7 +240,7 @@ h1 {
     border-radius: 0 0.75rem 0.75rem 0;
     flex: 1;
     box-shadow: var(--shadow-1-purple);
-    color: var(--font-color-primary);
+    color: var(--font-color-display);
     font-weight: 500;
     padding: 1rem 2rem;
     text-align: right;
@@ -271,12 +272,14 @@ h1 {
     --bg-color: #19191a;
     --font-color-primary: #ece5f0;
     --bg-color-display: rgba(200, 215, 230, 0.2);
+    --font-color-display: #e5e0ec;
 }
 
 .light-theme {
     --bg-color: #e5e0ec;
     --font-color-primary: #180622;
     --bg-color-display: rgba(52, 60, 68, 0.644);
+    --font-color-display: #e5e0ec;
 }
 
 @media (prefers-color-scheme: light) {
@@ -287,6 +290,10 @@ h1 {
     }
 
     #operation {
+        color: var(--bg-color);
+    }
+
+    #result {
         color: var(--bg-color);
     }
 }
