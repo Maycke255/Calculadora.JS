@@ -142,7 +142,7 @@ h1 {
     transform: translateY(-2px);
 }
 
-.character {
+.character, .characterEqual {
     background: var(--color-theme-keys);
     border: 2px solid var(--border-keys-theme);
     border-radius: .75rem;
@@ -154,13 +154,13 @@ h1 {
     text-shadow: 0 0 8px rgba(47, 11, 94, 0.479);
 }
 
-.character, #clear {
+.character, .characterEqual, #clear {
     height: clamp(3rem, 10vw, 4rem); /* Altura responsiva */
     font-size: clamp(1.2rem, 4vw, 1.5rem); /* Fonte responsiva */
     min-width: 0; /* Permite que os botões encolham */
 }
 
-.character:hover {
+.character:hover, .characterEqual:hover {
     background: #b8c5d3;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -241,7 +241,9 @@ h1 {
     flex: 1;
     box-shadow: var(--shadow-1-purple);
     color: var(--font-color-display);
+    font-family: var(--font-secondary);
     font-weight: 500;
+    font-size: clamp(1.5rem, 5vw, 2.25rem); /* Tamanho de fonte responsivo */
     padding: 1rem 2rem;
     text-align: right;
     text-shadow: 0 0 8px rgba(200, 220, 255, 0.3);
@@ -252,20 +254,19 @@ h1 {
     margin-left: 0;
 }
 
+.copied {
+    background: rgba(200, 215, 230, 0.2);
+    border: 2px solid #665feeb2;
+    font-weight: 600;
+    color: #665feeb2;
+}
+
 .text {
     display: flex;
 }
 
 .character, #clear, .switch-theme, .copy-btn {
     transition: all 0.2s ease;
-}
-
-/* Classe de mensagem de error para usar no JS quando o usuario digitar algum codigo malicioso que não for uma operação matematica no input */
-.error {
-    background: var(--bg-color-error);
-    color: var(--font-color-primary);
-    font-family: var(--font-secondary);
-    font-style: italic;
 }
 
 .dark-theme {
@@ -280,6 +281,14 @@ h1 {
     --font-color-primary: #180622;
     --bg-color-display: rgba(52, 60, 68, 0.644);
     --font-color-display: #e5e0ec;
+}
+
+/* Classe de mensagem de error para usar no JS quando o usuario digitar algum codigo malicioso que não for uma operação matematica no input */
+.error {
+    background-color: var(--bg-color-error);
+    color: var(--font-color-primary);
+    font-family: var(--font-secondary);
+    font-style: italic;
 }
 
 @media (prefers-color-scheme: light) {
