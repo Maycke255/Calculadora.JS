@@ -47,6 +47,7 @@ document.querySelectorAll(`.character`).forEach (function (charKeys){
 document.getElementById(`clear`).addEventListener(`click`, function () {
     operation.value = ``
     resultInput.value = ``
+    resultInput.classList.remove(`error`)
 
     document.getElementById(`copy`).innerText = `Copy`
     document.getElementById(`copy`).classList.remove(`copied`)

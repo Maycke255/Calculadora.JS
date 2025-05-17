@@ -285,8 +285,8 @@ h1 {
 
 /* Classe de mensagem de error para usar no JS quando o usuario digitar algum codigo malicioso que não for uma operação matematica no input */
 .error {
-    background-color: var(--bg-color-error);
-    color: var(--font-color-primary);
+    background-color: var(--bg-color-error) !important;
+    color: var(--font-color-primary) !important;
     font-family: var(--font-secondary);
     font-style: italic;
 }
