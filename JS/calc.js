@@ -1,3 +1,5 @@
+// Primeiro vamos pegar algumas variaveis importantes que usaremos no codigo
+// Primeiro pegamos todas as possiveis teclas que o usuario irá digitar no campo de operação, que na verdade são as teclas presentes no teclado da calculadora
 const keys = [`(`, `)`, `+`, `-`, `.`, `/`, `*`, `%`, `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`]
 
 const switchTheme = document.getElementById(`switchTheme`)
@@ -7,12 +9,17 @@ const copyToClipboard = document.getElementById(`copy`)
 const body = document.querySelector(`body`)
 const equal = document.getElementById(`equal`)
 
+/* Após isso, verificamos a preferencia do usuario, verificamos a preferencia que esta implantada no navegador e no seu dispositivo, para alterar o dataset
+ para facilitar o reconhecimento do botão de troca de tema na pagina */
 function checkPreferesTheme (ev) {
     ev.preventDefault()
 
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    /* Primeiro verificamos a preferencia do tema do usuario, window refere-se a janale/navegador do usuario, matchMedia e uma API uqe verifica as condições
+    da midia do navegador, matches retorna true se a condição for verdadeira */
+    const prefersDark = window.matchMedia(`(prefers-color-scheme: dark)`).matches;
     const body = document.body
 
+    // Por fim, fazemos uma alteração, caso a preferencia do usuario seja dark, ele irá mudar para dark e virse versa
     if (prefersDark) {
         body.dataset.theme = `dark`
     } else {
@@ -88,6 +95,8 @@ document.getElementById(`equal`).addEventListener(`click`, function () {
 })
 
 function calculate () {
+        resultInput.classList.remove(`error`)  
+
     if (!operation.value.trim()) {
         resultInput.value = "Digite uma operação";
         resultInput.classList.add('error');
@@ -96,16 +105,23 @@ function calculate () {
     
     try {
         let expression = operation.value
-        .replace(/%/g, '/100*');
+        .replace(/×/g, '*')
+        .replace(/÷/g, '/');
 
-        expression = expression.replace(/(\d+)%/g, '($1/100)')
-        .replace(/(\d+)%/g, '($1/100)');
+        expression = expression.replace(/([\d\.]+)%/g, '($1/100)');
+        expression = expression.replace(/([\*\/\+\-])([\d\.]+)%/g, '$1($2/100)');
 
-        if (expression.match(/\..*\./)) {
+        if (expression.match(/(\d+\.\d*\.|\d*\.\d+\.)/)) {
             throw new Error("Ponto decimal inválido");
         }
 
-        const result = eval(operation.value)
+        const parentesesAbertos = (expression.match(/\(/g) || []).length;
+        const parentesesFechados = (expression.match(/\)/g) || []).length;
+        if (parentesesAbertos !== parentesesFechados) {
+            throw new Error("Parênteses desbalanceados");
+        }
+
+        const result = eval(expression)
 
         if (isNaN(result)) {
             throw new Error("Operação inválida");
@@ -116,9 +132,7 @@ function calculate () {
         resultInput.classList.remove('error');
     } catch (error) {
         resultInput.value = `ERROR`
-        resultInput.classList.add(`error`)
-    
-        resultInput.classList.remove(`error`)
+        resultInput.classList.add(`error`)  
 
         console.error("Erro de cálculo:", error);
     }
