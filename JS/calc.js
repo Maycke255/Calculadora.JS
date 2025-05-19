@@ -75,16 +75,53 @@ operation.addEventListener(`keydown`, function (ev) {
     }
 })
 
-document.getElementById(`equal`).addEventListener(`click`, calculate)
+document.getElementById(`equal`).addEventListener(`click`, function () {
+        if (!operation.value.trim()) {
+            operation.focus();
+            operation.classList.add('error');
+
+            setTimeout(function () { 
+                operation.classList.remove('error')}, 1000);
+        return;
+    }
+    calculate()
+})
 
 function calculate () {
-    resultInput.value = `ERROR`
-    resultInput.classList.add(`error`)
-
-    const result = eval(operation.value)
-    resultInput.value = result
+    if (!operation.value.trim()) {
+        resultInput.value = "Digite uma operação";
+        resultInput.classList.add('error');
+        return;
+    }
     
-    resultInput.classList.remove(`error`)
+    try {
+        let expression = operation.value
+        .replace(/%/g, '/100*');
+
+        expression = expression.replace(/(\d+)%/g, '($1/100)')
+        .replace(/(\d+)%/g, '($1/100)');
+
+        if (expression.match(/\..*\./)) {
+            throw new Error("Ponto decimal inválido");
+        }
+
+        const result = eval(operation.value)
+
+        if (isNaN(result)) {
+            throw new Error("Operação inválida");
+        }
+
+        resultInput.value = result
+
+        resultInput.classList.remove('error');
+    } catch (error) {
+        resultInput.value = `ERROR`
+        resultInput.classList.add(`error`)
+    
+        resultInput.classList.remove(`error`)
+
+        console.error("Erro de cálculo:", error);
+    }
 }
 
 document.getElementById(`copy`).addEventListener(`click`, function (ev) {
