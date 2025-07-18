@@ -1,9 +1,25 @@
 // Primeiro vamos pegar algumas variaveis importantes que usaremos no codigo.
 
-/* Inportação das operações */
-import calculate, {keys, switchTheme, operation, resultInput, copyToClipboard, body, equal, checkPreferesTheme, 
-    menuCalculate, equalBtn, copyToClipboardBtn
-} from "./operations.js"
+//Importando a função principal
+import calculate from './modulesJS/operations.js';
+
+/* Inportação das variaveis a serem usadas */
+import {
+    switchTheme,
+    operation,
+    resultInput,
+    copyToClipboard,
+    body,
+    equal
+} from './modulesJS/elements.js';
+
+//Importando os demais eventos necessarios
+import {
+    checkPreferesTheme,
+    menuCalculate,
+    equalBtn,
+    copyToClipboardBtn
+} from './modulesJS/events.js';
 
 /* Esse aqui e um evento que é disparado quando o navegador terminou de carregar e analisar completamente o documento HTML ele ocorre quando toda a 
 estrutura DOM está pronta, mas antes de imagens e outros recursos externos terminarem de carregar, nesse caso garante que a função checkPreresTheme 
@@ -11,7 +27,7 @@ só será executada quando o elemento <body> estiver disponível no DOM. */
 document.addEventListener(`DOMContentLoaded`, checkPreferesTheme);
 
 // Função do botão de trocar tema
-switchTheme.addEventListener(`click`, function () {
+switchTheme.addEventListener(`click`, () => {
     const icon = switchTheme.querySelector(`.theme-icon`);
     /* Operador ternario para trocar os icones do botão, no caso ele pega o conteudo do texto, em seguida acessa o dataset presente no body e verifica
     se e igual a dark, caso seja igual, ele vai deixar uma lua, caso não seja igual a dark, ele deixará um sol. */
@@ -34,7 +50,7 @@ switchTheme.addEventListener(`click`, function () {
 display de operação com as teclas virtuais da tela, para que as teclas clicadas apareçam no display da calculadora, a forEach nesse caso retorna uma node
 list, uma coleção de elementos, chamamos essa coleção de charKeys, e para cada elemento dessa nodeList adicionamos uma função de lick, ou seja, para cada
 tecla clicada com o mouse ele vai pegar o valor do dataset no DOM que nada mais é que o valor daquela tecla, e reatribui ao operation.*/
-document.querySelectorAll(`.character`).forEach (function (charKeys){
+document.querySelectorAll(`.character`).forEach ( (charKeys) => {
     charKeys.addEventListener(`click`, function () {
         const valueKey = charKeys.dataset.key
         operation.value += valueKey
@@ -43,7 +59,7 @@ document.querySelectorAll(`.character`).forEach (function (charKeys){
 
 /* Função para o botão clear, limpa o campo da operation e do result, também tiramos a classe error e colocamos o texto copy no botão de copiar para a area
 de transferencia e removemos sua classe, e depois damos um focus na operation */
-document.getElementById(`clear`).addEventListener(`click`, function () {
+document.getElementById(`clear`).addEventListener(`click`, () => {
     operation.value = ``
     resultInput.value = ``
     resultInput.classList.remove(`error`)
@@ -54,9 +70,10 @@ document.getElementById(`clear`).addEventListener(`click`, function () {
     operation.focus()
 })
 
-operation.addEventListener(`keydown`, menuCalculate(ev))
+operation.addEventListener(`keydown`, menuCalculate)
 
 // Botão de igual
-document.getElementById(`equal`).addEventListener(`click`, equalBtn)
+equal.addEventListener(`click`, equalBtn)
 
-document.getElementById(`copy`).addEventListener(`click`, copyToClipboardBtn)
+//Botão de copiar e colar
+copyToClipboard.addEventListener(`click`, copyToClipboardBtn)
